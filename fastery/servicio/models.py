@@ -2,8 +2,8 @@ from django.db import models
 from django.template.defaultfilters import length
 
 class raiz(models.Model):
-    nombre = models.CharField(max_length=20)
-    direccion = models.CharField(max_length=40)
+    nombre = models.CharField(max_length=50)
+    direccion = models.CharField(max_length=100)
     telefono = models.CharField(max_length=10)
 
     class Meta:
@@ -24,8 +24,9 @@ class restaurante(raiz):
 
 
 class plato(models.Model):
-    name = models.CharField(max_length=15)
+    name = models.CharField(max_length=55)
+    nombre_restaurant = models.CharField(max_length=55)
     detail = models.TextField(max_length=200)
     valor = models.CharField(max_length=20)
-# Create your models here.
+
 

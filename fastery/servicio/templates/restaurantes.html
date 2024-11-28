@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurantes</title>
+</head>
+<body>
+<h1>RESTAURANTES</h1>
+{% for i in res %}
+<br>
+<h2>{{i.nombre}}</h2>
+<div><a href="/productos/{{i.nombre}}" class="cta-button">Ver menu</a></div>
+<br/>
+{% endfor %}
+<br>
+<div><a href="/log" class="cta-button">Registrarse</a></div>
+<br/>
+</body>
+</html>

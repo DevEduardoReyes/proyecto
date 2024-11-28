@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platillos</title>
+</head>
+<body>
+<h1>Platillos del restaurante {{id}}</h1>
+
+<p1>direccion: {{res.direccion}}</p1>
+<br>
+<br>
+<p1>Telefono: {{res.telefono}}</p1>
+<br/>
+
+<br>
+<p1>descripcion: {{res.descripcion}}</p1>
+<br/>
+<hr>
+<h1>MENU</h1>
+</hr>
+{% for food in comida %}
+{% if food.nombre_restaurant == id %}
+<br>
+<h2>{{food.name}}</h2>
+<p1>{{food.detail}}</p1>
+<div><a href= "{% url 'pedido' food.id %}"  class="cta-button">Ordenar</a></div>
+<br/>
+{% endif %}
+{% endfor %}
+
+</body>
+</html>
