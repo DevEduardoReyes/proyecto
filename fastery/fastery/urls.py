@@ -23,10 +23,10 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("",servicio.inicio, name= "inicio"),
-    path("log/",servicio.log, name="log"),
+    path("registrar/",servicio.registrar, name="registrar"),
     path("restaurantes/",servicio.res_list, name="restaurantes"),
     path("productos/<str:id>",servicio.menu,name='productos'),
-    path("no_found",servicio.no_implementada,name="no_found"),
+    path("no_found/",servicio.no_implementada,name="no_found"),
     path("pedido/<int:id>",servicio.pedido, name='pedido'),
     path("pedido_realizado/",servicio.realizado, name= 'pedido_realizado')
 ]

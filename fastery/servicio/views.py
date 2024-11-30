@@ -1,17 +1,17 @@
 from django.shortcuts import render, redirect, HttpResponse
-from .formulario import registro
-from servicio.models import cliente,raiz, restaurante,plato
+from .formulario import Registro
+from servicio.models import Cliente,Raiz, Restaurante,Plato
 
 def inicio(request):
     return render(request,"inicio.html")
 
-def log(request):
+def registrar(request):
     if request.method == "GET":
-        return render(request,"register.html",
-                  {"form":registro()})
+        return render(request,"formulario_registro.html",
+                  {"form":Registro()})
     else:
         if request.POST['clave']== request.POST['confirm']:
-            cliente.objects.create(
+            Cliente.objects.create(
             nombre = request.POST['nombre'],
             apellido = request.POST['apellido'],
             direccion=request.POST['direccion'],
@@ -22,12 +22,12 @@ def log(request):
             return HttpResponse('Las claves no coinciden')
 
 def res_list(request):
-    res = restaurante.objects.all()
+    res = Restaurante.objects.all()
     return render(request,"restaurantes.html",{"res":res})
 
 def menu(request,id):
-    comida = plato.objects.all()
-    res = restaurante.objects.get(nombre=id)
+    comida = Plato.objects.all()
+    res = Restaurante.objects.get(nombre=id)
     return render(request, "productos.html",
                   {'comida':comida,
                    "id":id,
@@ -37,7 +37,7 @@ def no_implementada(request):
     return render(request,"no_implementado.html")
 
 def pedido(request,id):
-    orden = plato.objects.filter(id=id).get()
+    orden = Plato.objects.filter(id=id).get()
     return render(request,"confirmar_pedido.html",{"orden":orden})
 
 def realizado(request):

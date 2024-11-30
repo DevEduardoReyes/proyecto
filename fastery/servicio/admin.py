@@ -1,9 +1,9 @@
 from django.contrib import admin
-from servicio.models import cliente,repartidor,restaurante,plato
+from servicio.models import Cliente,Repartidor,Restaurante,Plato
 
-admin.site.register(cliente)
-admin.site.register(repartidor)
-admin.site.register(restaurante)
-admin.site.register(plato)
+admin.site.register(Cliente)
+admin.site.register(Repartidor)
+admin.site.register(Restaurante)
+admin.site.register(Plato)
 
 # Register your models here.
