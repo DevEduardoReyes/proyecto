@@ -9,6 +9,7 @@
 {% for i in res %}
 <br>
 <h2>{{i.nombre}}</h2>
+<img src="{{i.logo.url}}"  width="250" height="200">
 <div><a href="/productos/{{i.nombre}}" class="cta-button">Ver menu</a></div>
 <br/>
 {% endfor %}

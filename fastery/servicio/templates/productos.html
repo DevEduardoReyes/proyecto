@@ -24,7 +24,11 @@
 {% if food.nombre_restaurant == id %}
 <br>
 <h2>{{food.name}}</h2>
+<img src="{{food.imagen_plato.url}}"  width="150" height="100">
+<br/>
 <p1>{{food.detail}}</p1>
+<br>
+<p2>Precio:{{food.valor}}</p2>
 <div><a href= "{% url 'pedido' food.id %}"  class="cta-button">Ordenar</a></div>
 <br/>
 {% endif %}

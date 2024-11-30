@@ -17,6 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 import servicio.views as servicio
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("",servicio.inicio, name= "inicio"),
@@ -27,3 +30,6 @@ urlpatterns = [
     path("pedido/<int:id>",servicio.pedido, name='pedido'),
     path("pedido_realizado/",servicio.realizado, name= 'pedido_realizado')
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
