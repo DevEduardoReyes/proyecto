@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponse
 from .formulario import Registro
-from servicio.models import Cliente,Raiz, Restaurante,Plato
+from servicio.models import Cliente,Raiz, Restaurante,Plato,Repartidor
 
 def inicio(request):
     return render(request,"inicio.html")
@@ -40,5 +40,7 @@ def pedido(request,id):
     orden = Plato.objects.filter(id=id).get()
     return render(request,"confirmar_pedido.html",{"orden":orden})
 
-def realizado(request):
-    return render(request,"realizado.html")
+def realizado(request,id):
+    confirma_orden = Plato.objects.filter(id=id).get()
+    repartir = Repartidor.objects.filter(id=1).get()
+    return render(request,"realizado.html", {"confirma_orden": confirma_orden, "repartir":repartir})

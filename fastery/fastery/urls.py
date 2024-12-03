@@ -28,7 +28,7 @@ urlpatterns = [
     path("productos/<str:id>",servicio.menu,name='productos'),
     path("no_found/",servicio.no_implementada,name="no_found"),
     path("pedido/<int:id>",servicio.pedido, name='pedido'),
-    path("pedido_realizado/",servicio.realizado, name= 'pedido_realizado')
+    path("pedido_realizado/<int:id>",servicio.realizado, name= 'pedido_realizado')
 ]
 
 if settings.DEBUG:

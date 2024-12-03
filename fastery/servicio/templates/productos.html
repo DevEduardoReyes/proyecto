@@ -8,18 +8,18 @@
 </head>
 <body>
 <h1>Platillos del restaurante {{id}}</h1>
-<img src="{{res.logo.url}}"  width="350" height="300">
-<br/>
-<p1>direccion: {{res.direccion}}</p1>
-<br>
-<br>
-<p1>Telefono: {{res.telefono}}</p1>
-<br/>
 
-<br>
-<p1>descripcion: {{res.descripcion}}</p1>
-<br/>
-<hr>
+<div class="card mb-3">
+  <img src="{{res.logo.url}}" class="card-img-top" alt="..." style="width: 250px; height: 250;">
+  <div class="card-body">
+    <h5 class="card-title">{{id}}</h5>
+    <p class="card-text">Direccion: {{res.direccion}}</p>
+      <p class="card-text"> Telefono: {{res.telefono}}</p>
+    <p class="card-text"><small class="text-body-secondary">{{res.descripcion}}</small></p>
+  </div>
+</div>
+
+
 <h1>MENU</h1>
 </hr>
 <div class="container mt-5">
@@ -35,6 +35,7 @@
                      <a href="{% url 'pedido' food.id %}" class="btn btn-primary">Ordenar</a>
                 </div>
             </div>
+
 
 {% endif %}
 {% endfor %}

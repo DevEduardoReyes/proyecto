@@ -19,7 +19,7 @@
         <h5 class="card-title">{{orden.name}}</h5>
         <p class="card-text">{{orden.detail}}</p>
         <p class="card-text"><small class="text-body-secondary">Precio: {{orden.valor}}</small></p>
-<button type="button" class="btn btn-outline-danger" onclick="window.location.href='/pedido_realizado';">Realizar pedido</button>
+<button type="button" class="btn btn-outline-danger" onclick="window.location.href='{% url 'pedido_realizado' orden.id %}'">Realizar pedido</button>
 
       </div>
     </div>
@@ -28,7 +28,7 @@
 
 
 <br/>
-<div><a href="/pedido_realizado" class="cta-button">Realizar pedido</a></div>
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
