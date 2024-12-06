@@ -58,7 +58,8 @@
         <h1>REGISTRO</h1>
         <form method="POST">
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ formulario.as_p }}
+            <p>{{ error }}</p>
             <button type="submit">Guardar</button>
         </form>
     </div>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar sesion</title>
+</head>
+<body>
+<h1>Inicie sesion</h1>
+<form method="POST">
+    {{ error }}
+     {% csrf_token %}
+    {{ sesion.as_p }}
+<button class="btn btn-outline-success me-2" type="submit">Iniciar sesion</button>
+</form>
+
+
+</body>
+</html>
