@@ -4,45 +4,120 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Platillos</title>
-
+     {% extends 'Base.html' %}
+    {% block content %}
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+        h1 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #333;
+            font-weight: bold;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        .card-img-top {
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .card-img-top:hover {
+            transform: scale(1.1);
+        }
+        .btn-primary {
+            background-color: #ff4b3b;
+            border-color: #ff4b3b;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #e03e33;
+            border-color: #e03e33;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .cta-button {
+            font-size: 18px;
+            background-color: #ff4b3b;
+            padding: 14px 28px;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #e03e33;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        .card-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .card-group .col {
+            flex: 1;
+            min-width: 280px;
+        }
+    </style>
 </head>
-{% extends 'Base.html' %}
-
-{% block content %}
 <body>
-<h1>Platillos del restaurante {{id}}</h1>
 
-<div class="card mb-3">
-  <img src="{{res.logo.url}}" class="card-img-top" alt="..." style="width: 250px; height: 250;">
-  <div class="card-body">
-    <h5 class="card-title">{{id}}</h5>
-    <p class="card-text">Direccion: {{res.direccion}}</p>
-      <p class="card-text"> Telefono: {{res.telefono}}</p>
-    <p class="card-text"><small class="text-body-secondary">{{res.descripcion}}</small></p>
-  </div>
-</div>
+    <h1>Platillos del Restaurante {{id}}</h1>
 
-
-<h1>MENU</h1>
-
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-  {% for food in comida %}
-            {% if food.nombre_restaurant == id %}
-    <div class="col">
-      <div class="card h-100">
-        <img src="{{food.imagen_plato.url}}"class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">{{food.name}}</h5>
-          <p class="card-text">{{food.detail}}</p>
-           <a href="{% url 'pedido' food.id %}" class="btn btn-primary">Ordenar</a>
+    <!-- Información del restaurante -->
+    <div class="card mb-3">
+        <img src="{{res.logo.url}}" class="card-img-top" alt="Logo del restaurante" style="width: 250px; height: 250px; margin-left: auto; margin-right: auto;">
+        <div class="card-body text-center">
+            <h5 class="card-title">{{id}}</h5>
+            <p class="card-text">Dirección: {{res.direccion}}</p>
+            <p class="card-text">Teléfono: {{res.telefono}}</p>
+            <p class="card-text"><small class="text-muted">{{res.descripcion}}</small></p>
         </div>
-      </div>
     </div>
-            {% endif %}
-  {% endfor %}
-</div>
 
+    <h1>Menú</h1>
+    <hr>
 
-{% endblock %}
+    <!-- Menú de platillos -->
+    <div class="container mt-5">
+        <div class="card-group">
+            {% for food in comida %}
+                {% if food.nombre_restaurant == id %}
+                    <div class="col">
+                        <div class="card">
+                            <img src="{{food.imagen_plato.url}}" class="card-img-top" alt="Platillo" style="height: 200px;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{food.name}}</h5>
+                                <p class="card-text">{{food.detail}}</p>
+                                 {% if user.is_authenticated %}
+                                <a href="{% url 'pedido' food.id %}" class="btn btn-primary w-100">Ordenar</a>
+                                {% else %}
+                                <a href="{% url 'iniciar' %}" class="btn btn-primary w-100">Ordenar</a>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    {% endblock %}
 </body>
 </html>

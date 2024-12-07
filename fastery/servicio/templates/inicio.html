@@ -1,46 +1,53 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenido a Fastery</title>
+     {% extends 'Base.html' %}
+    {% block content %}
+
 
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
             background-color: #f4f4f9;
             color: #333;
+            margin: 0;
+            padding: 0;
         }
 
         .header {
-            background-color: #ff6347   ;
+            background-color: #ff6347;
             color: white;
             text-align: center;
-            padding: 50px 0;
+            padding: 60px 0;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .header h1 {
             margin: 0;
-            font-size: 3em;
+            font-size: 3.5em;
+            font-weight: bold;
         }
 
         .content {
             text-align: center;
-            padding: 20px;
+            padding: 40px 20px;
         }
 
         .content p {
-            font-size: 1.2em;
+            font-size: 1.3em;
             margin: 20px 0;
+            color: #555;
         }
 
         .cta-button {
             background-color: #ff6347;
             color: white;
-            padding: 15px 30px;
+            padding: 15px 20px;
             border: none;
             border-radius: 5px;
             font-size: 1.2em;
@@ -55,31 +62,35 @@
 
         .footer {
             text-align: center;
-            padding: 20px;
+            padding: 10px;
             background-color: #333;
             color: white;
+            margin-top: 50px;
         }
     </style>
-
 </head>
-{% extends 'Base.html' %}
-
-{% block content %}
-
 
 <body>
 
-
+    <!-- Header -->
     <div class="header">
         <h1>¡Bienvenido a Fastery!</h1>
     </div>
 
-    <div class="content">
-        <p>¡Bienvenido a fastery!</p>
-        <p>!del restaurante a tu casita, sin la esperita!</p>
-        <a href="/restaurantes" class="cta-button">Comienza a ordenar </a></div>
+    <!-- Content Section -->
+    <div class="container content">
+        <p class="lead">¡Bienvenido a Fastery!</p>
+        <p class="lead">¡Del restaurante a tu casita, sin la esperita!</p>
+        <a href="/restaurantes" class="cta-button btn btn-danger btn-lg">Comienza a ordenar</a>
+    </div>
 
-{% endblock %}
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2024 Fastery. Todos los derechos reservados.</p>
+    </div>
 
+  {% endblock %}
 </body>
 </html>
+
+

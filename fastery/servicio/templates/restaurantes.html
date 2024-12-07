@@ -1,37 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurantes</title>
-
+    {% extends 'Base.html' %}
+    {% block content %}
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        h1 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .btn-primary {
+            background-color: #ff4b3b;
+            border-color: #ff4b3b;
+        }
+        .btn-primary:hover {
+            background-color: #e03e33;
+            border-color: #e03e33;
+        }
+        .cta-button {
+            text-align: center;
+            font-size: 16px;
+            background-color: #ff4b3b;
+            padding: 12px 24px;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #e03e33;
+        }
+    </style>
 </head>
-{% extends 'Base.html' %}
-{% block content %}
 
 <body>
-<h1>RESTAURANTES</h1>
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
-  {% for i in res %}
-    <div class="col">
-      <div class="card h-100">
-        <img src="{{i.logo.url}}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">{{i.nombre}}</h5>
-          <p class="card-text">{{i.descripcion}}</p>
-            <a href="/productos/{{i.nombre}}" class="btn btn-primary">MENU</a>
+    <h1>RESTAURANTES</h1>
+
+    <div class="container mt-5">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {% for i in res %}
+                <div class="col">
+                    <div class="card">
+                        <img src="{{i.logo.url}}" class="card-img-top" alt="{{i.nombre}}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{i.nombre}}</h5>
+                            <p class="card-text">{{i.descripcion}}</p>
+                            <a href="/productos/{{i.nombre}}" class="btn btn-primary">MENU DEL RESTAURANTE</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
-      </div>
     </div>
-  {% endfor %}
-</div>
 
 
-<br>
-<div><a href="/registrar" class="cta-button">Registrarse</a></div>
-<br/>
-
-{% endblock %}
+  {% endblock %}
 </body>
 </html>
