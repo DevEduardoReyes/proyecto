@@ -1,5 +1,7 @@
+
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, HttpResponse
-from .formulario import Registro
+from .formulario import DatosGenerales
 from servicio.models import Cliente,Raiz, Restaurante,Plato,Repartidor
 from django.contrib.auth.forms import UserCreationForm , AuthenticationForm
 from django.contrib.auth.models import User
@@ -45,10 +47,6 @@ def pedido(request,id):
     orden = Plato.objects.filter(id=id).get()
     return render(request,"confirmar_pedido.html",{"orden":orden})
 
-def realizado(request,id):
-    confirma_orden = Plato.objects.filter(id=id).get()
-    repartir = Repartidor.objects.filter(id=1).get()
-    return render(request,"realizado.html", {"confirma_orden": confirma_orden, "repartir":repartir})
 
 def cerrar_sesion(request):
     logout(request)
@@ -66,4 +64,29 @@ def iniciar_sesion(request):
             return redirect('inicio')
 
 
+@login_required
+def historial(request):
+    pedidos = Cliente.objects.filter(usuario=request.user)
 
+    return render(request,'Historial.html',{'pedidos':pedidos})
+
+@login_required
+def datos_entrega(request,id):
+    plato = Plato.objects.get(id=id)
+    repartir = Repartidor.objects.filter(id=1).get()
+    if request.method == 'POST':
+        entrega = DatosGenerales(request.POST)
+        if entrega.is_valid():
+            historial = entrega.save(commit=False)
+            historial.usuario = request.user
+            historial.plato = plato
+            historial.save()
+            return render(request,"realizado.html", {"plato": plato, "repartir":repartir})
+
+    else:
+        entrega = DatosGenerales(request.POST)
+
+    return render(request,'DatosEntrega.html',{'entrega':entrega,'plato':plato})
+
+def informacion(request):
+    return render(request,'acerca_de_nosotros.html')

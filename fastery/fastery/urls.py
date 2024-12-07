@@ -28,9 +28,11 @@ urlpatterns = [
     path("productos/<str:id>",servicio.menu,name='productos'),
     path("no_found/",servicio.no_implementada,name="no_found"),
     path("pedido/<int:id>",servicio.pedido, name='pedido'),
-    path("pedido_realizado/<int:id>",servicio.realizado, name= 'pedido_realizado'),
     path('cerrar/',servicio.cerrar_sesion, name= 'cerrar'),
-    path('iniciar/',servicio.iniciar_sesion, name= 'iniciar')
+    path('iniciar/',servicio.iniciar_sesion, name= 'iniciar'),
+    path('historial/',servicio.historial, name='historial'),
+    path("datos/<int:id>",servicio.datos_entrega, name='datos'),
+    path("nosotros/",servicio.informacion, name='nosotros'),
 ]
 
 if settings.DEBUG:

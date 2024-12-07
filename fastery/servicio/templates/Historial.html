@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hostorial de pedidos</title>
+
+{% extends 'Base.html' %}
+{% block content %}
+
+<style>
+        body {
+            background-color: #f8f9fa;
+        }
+        h1 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .btn-primary {
+            background-color: #ff4b3b;
+            border-color: #ff4b3b;
+        }
+        .btn-primary:hover {
+            background-color: #e03e33;
+            border-color: #e03e33;
+        }
+        .cta-button {
+            text-align: center;
+            font-size: 16px;
+            background-color: #ff4b3b;
+            padding: 12px 24px;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #e03e33;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Historial de Pedidos de {{ user.username }}</h1>
+
+ <div class="container mt-5">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5 g-4">
+            {% if pedidos %}
+            {% for pedido in pedidos %}
+                <div class="col">
+                    <div class="card">
+                        <img src="{{pedido.plato.imagen_plato.url}}" class="card-img-top" alt="{{pedido.plato.name}}">
+                        <div class="card-body">
+                            <p class="card-text">A nombre de: {{pedido.nombre}} {{pedido.apellido}}</p>
+                            <p class="card-text">Entrega en: {{pedido.direccion}}</p>
+                            <h5 class="card-title">{{pedido.plato.name}}</h5>
+                            <p class="card-text">{{pedido.plato.valor}}</p>
+
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            {% else %}
+            <h2>HISTORIAL VACIO</h2>
+            {% endif %}
+        </div>
+    </div>
+
+
+
+{% endblock %}
+</body>
+</html>

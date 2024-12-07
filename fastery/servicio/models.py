@@ -1,10 +1,12 @@
 from django.db import models
 from django.template.defaultfilters import length
+from django.contrib.auth.models import User
+
 
 class Raiz(models.Model):
-    nombre = models.CharField(max_length=50)
-    direccion = models.CharField(max_length=100)
-    telefono = models.CharField(max_length=10)
+    nombre = models.CharField(max_length=50, help_text="Ingrese el nombre:")
+    direccion = models.CharField(max_length=100, help_text='ingrese la direccion')
+    telefono = models.CharField(max_length=10,help_text='Telefono:')
 
     class Meta:
         abstract = True
@@ -12,9 +14,7 @@ class Raiz(models.Model):
     def __str__(self):
         return f"Nombre: {self.nombre}"
 
-class Cliente(Raiz):
-    apellido = models.CharField(max_length=20)
-    clave = models.CharField(max_length=50)
+
 
 class Repartidor(Raiz):
     moto_marca = models.CharField(max_length=15)
@@ -37,3 +37,8 @@ class Plato(models.Model):
         return f'{self.name}'
 
 
+class Cliente(Raiz):
+    apellido = models.CharField(max_length=20,help_text="Ingrese su apellido")
+    clave = models.CharField(max_length=50)
+    plato = models.ForeignKey(Plato, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)

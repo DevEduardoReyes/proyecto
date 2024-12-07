@@ -13,13 +13,15 @@
     <div class="d-flex">
       {% if user.is_authenticated %}
       <button class="btn btn-outline-success me-2" type="button" onclick="location.href='{% url 'cerrar' %}'">Cerrar sesion</button>
+        <button class="btn btn-outline-success me-2" type="button" onclick="location.href='{% url 'historial' %}'">Historial</button>
+
 
       {% else %}
       <button class="btn btn-outline-success me-2" type="button" onclick="location.href='{% url 'registrar' %}'">Registro</button>
       <button class="btn btn-outline-success me-2" type="button" onclick="location.href='{% url 'iniciar' %}'">Iniciar sesion</button>
 
       {% endif %}
-    <button class="btn btn-outline-success me-2" type="button" >Acerca de nosotros</button>
+    <button class="btn btn-outline-success me-2" type="button" onclick="location.href='{% url 'nosotros' %}'" >Acerca de nosotros</button>
     </div>
   </div>
 </nav>

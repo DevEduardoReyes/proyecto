@@ -104,6 +104,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{food.name}}</h5>
                                 <p class="card-text">{{food.detail}}</p>
+                                <p class="card-text">{{food.valor}}</p>
                                  {% if user.is_authenticated %}
                                 <a href="{% url 'pedido' food.id %}" class="btn btn-primary w-100">Ordenar</a>
                                 {% else %}
