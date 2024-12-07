@@ -1,5 +1,3 @@
-from crypt import methods
-
 from django.shortcuts import render, redirect, HttpResponse
 from .formulario import Registro
 from servicio.models import Cliente,Raiz, Restaurante,Plato,Repartidor
