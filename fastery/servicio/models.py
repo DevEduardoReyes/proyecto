@@ -4,9 +4,9 @@ from django.contrib.auth.models import User
 
 
 class Raiz(models.Model):
-    nombre = models.CharField(max_length=50, help_text="Ingrese el nombre:")
-    direccion = models.CharField(max_length=100, help_text='ingrese la direccion')
-    telefono = models.CharField(max_length=10,help_text='Telefono:')
+    nombre = models.CharField(max_length=50)
+    direccion = models.CharField(max_length=100)
+    telefono = models.CharField(max_length=10)
 
     class Meta:
         abstract = True
@@ -21,11 +21,6 @@ class Repartidor(Raiz):
     placa = models.CharField(max_length=10)
     estado = models.BooleanField(default=True)
 
-    def disponible(self):
-        pass
-
-
-
 
 class Restaurante(Raiz):
     descripcion = models.TextField(max_length=150)
@@ -34,7 +29,6 @@ class Restaurante(Raiz):
 
 class Plato(models.Model):
     nombre_plato = models.CharField(max_length=55)
-    nombre_restaurant = models.CharField(max_length=55)
     restaurantes = models.ForeignKey(Restaurante,on_delete=models.CASCADE,default=8)
     detalle = models.TextField(max_length=200)
     valor = models.CharField(max_length=20)
