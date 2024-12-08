@@ -19,6 +19,13 @@ class Repartidor(Raiz):
     moto_marca = models.CharField(max_length=15)
     serie = models.CharField(max_length=15)
     placa = models.CharField(max_length=10)
+    estado = models.BooleanField(default=True)
+
+    def disponible(self):
+        pass
+
+
+
 
 class Restaurante(Raiz):
     descripcion = models.TextField(max_length=150)
@@ -33,7 +40,7 @@ class Plato(models.Model):
     imagen_plato = models.ImageField(upload_to='platos', null=True)
 
     def __str__(self):
-        return f'{self.name}'
+        return f'{self.nombre_plato}'
 
 
 class Cliente(Raiz):

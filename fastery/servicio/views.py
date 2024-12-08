@@ -71,22 +71,28 @@ def historial(request):
     return render(request,'Historial.html',{'pedidos':pedidos})
 
 @login_required
-def datos_entrega(request,id):
+def datos_entrega(request, id):
     plato = Plato.objects.get(id=id)
-    repartir = Repartidor.objects.filter(id=1).get()
+    repartir = Repartidor.objects.filter(estado=True)
+    if not repartir:
+        return HttpResponse('No hay repartidores disponibles')
+    asignado = repartir.first()
     if request.method == 'POST':
         entrega = DatosGenerales(request.POST)
         if entrega.is_valid():
+            asignado.estado = False
+            asignado.save()
+
             historial = entrega.save(commit=False)
             historial.usuario = request.user
             historial.plato = plato
             historial.save()
-            return render(request,"realizado.html", {"plato": plato, "repartir":repartir})
+            return render(request, "realizado.html", {"plato": plato, "repartir": asignado})
 
     else:
         entrega = DatosGenerales(request.POST)
 
-    return render(request,'DatosEntrega.html',{'entrega':entrega,'plato':plato})
+    return render(request, 'DatosEntrega.html', {'entrega': entrega, 'plato': plato})
 
 def informacion(request):
     return render(request,'acerca_de_nosotros.html')
