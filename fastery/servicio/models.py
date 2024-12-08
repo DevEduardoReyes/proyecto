@@ -15,7 +15,6 @@ class Raiz(models.Model):
         return f"Nombre: {self.nombre}"
 
 
-
 class Repartidor(Raiz):
     moto_marca = models.CharField(max_length=15)
     serie = models.CharField(max_length=15)
@@ -27,9 +26,9 @@ class Restaurante(Raiz):
 
 
 class Plato(models.Model):
-    name = models.CharField(max_length=55)
+    nombre_plato = models.CharField(max_length=55)
     nombre_restaurant = models.CharField(max_length=55)
-    detail = models.TextField(max_length=200)
+    detalle = models.TextField(max_length=200)
     valor = models.CharField(max_length=20)
     imagen_plato = models.ImageField(upload_to='platos', null=True)
 
@@ -39,6 +38,5 @@ class Plato(models.Model):
 
 class Cliente(Raiz):
     apellido = models.CharField(max_length=20,help_text="Ingrese su apellido")
-    clave = models.CharField(max_length=50)
     plato = models.ForeignKey(Plato, on_delete=models.CASCADE)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)

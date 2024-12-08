@@ -102,8 +102,8 @@
                         <div class="card">
                             <img src="{{food.imagen_plato.url}}" class="card-img-top" alt="Platillo" style="height: 200px;">
                             <div class="card-body">
-                                <h5 class="card-title">{{food.name}}</h5>
-                                <p class="card-text">{{food.detail}}</p>
+                                <h5 class="card-title">{{food.nombre_plato}}</h5>
+                                <p class="card-text">{{food.detalle}}</p>
                                 <p class="card-text">{{food.valor}}</p>
                                  {% if user.is_authenticated %}
                                 <a href="{% url 'pedido' food.id %}" class="btn btn-primary w-100">Ordenar</a>

@@ -86,9 +86,9 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">{{orden.name}}</h5>
-                        <p class="card-text">{{orden.detail}}</p>
-                        <p class="card-text"><small class="text-muted">Precio: ${{orden.valor}}</small></p>
+                        <h5 class="card-title">{{orden.nombre_plato}}</h5>
+                        <p class="card-text">{{orden.detalle}}</p>
+                        <p class="card-text"><small class="text-muted">Precio: {{orden.valor}}</small></p>
                         <button type="button" class="btn btn-danger" onclick="window.location.href='{% url 'datos' orden.id %}'">Realizar Pedido</button>
                     </div>
                 </div>
