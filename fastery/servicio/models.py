@@ -35,6 +35,7 @@ class Restaurante(Raiz):
 class Plato(models.Model):
     nombre_plato = models.CharField(max_length=55)
     nombre_restaurant = models.CharField(max_length=55)
+    restaurantes = models.ForeignKey(Restaurante,on_delete=models.CASCADE,default=8)
     detalle = models.TextField(max_length=200)
     valor = models.CharField(max_length=20)
     imagen_plato = models.ImageField(upload_to='platos', null=True)

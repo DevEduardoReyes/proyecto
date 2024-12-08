@@ -33,12 +33,10 @@ def res_list(request):
     return render(request,"restaurantes.html",{"res":res})
 
 def menu(request,id):
-    comida = Plato.objects.all()
-    res = Restaurante.objects.get(nombre=id)
+    comida = Plato.objects.filter(restaurantes = id)
+    res = Restaurante.objects.filter(id=id).get()
     return render(request, "productos.html",
-                  {'comida':comida,
-                   "id":id,
-                   "res":res})
+                  {'comida':comida,'res':res})
 
 def no_implementada(request):
     return render(request,"no_implementado.html")
