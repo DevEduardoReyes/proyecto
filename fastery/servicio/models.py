@@ -12,7 +12,7 @@ class Raiz(models.Model):
         abstract = True
 
     def __str__(self):
-        return f"Nombre: {self.nombre}"
+        return f"{self.nombre}"
 
 
 class Repartidor(Raiz):

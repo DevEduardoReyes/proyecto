@@ -27,7 +27,6 @@ def registrar(request):
 
 
 
-
 def res_list(request):
     res = Restaurante.objects.all()
     return render(request,"restaurantes.html",{"res":res})
@@ -56,7 +55,7 @@ def iniciar_sesion(request):
     else:
         usuario = authenticate(request, username= request.POST['username'], password= request.POST['password'])
         if usuario is None:
-            return render(request, 'inicio_sesion.html', {'sesion': AuthenticationForm,                                                        'error':'El usuario que ingreso no existe'})
+            return render(request, 'inicio_sesion.html', {'sesion': AuthenticationForm,'error':'El usuario que ingreso no existe o la clave es incorrecta'})
         else:
             login(request, usuario)
             return redirect('inicio')
@@ -73,7 +72,7 @@ def datos_entrega(request, id):
     plato = Plato.objects.get(id=id)
     repartir = Repartidor.objects.filter(estado=True)
     if not repartir:
-        return HttpResponse('No hay repartidores disponibles')
+        return HttpResponse('<h1>No hay repartidores disponibles en este momento</h1>')
     asignado = repartir.first()
     if request.method == 'POST':
         entrega = DatosGenerales(request.POST)

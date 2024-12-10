@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hostorial de pedidos</title>
+    <title>Historial de pedidos</title>
 
 {% extends 'Base.html' %}
 {% block content %}
@@ -72,7 +72,6 @@
                             <p class="card-text">Entrega en: {{pedido.direccion}}</p>
                             <h5 class="card-title">{{pedido.plato.nombre_plato}}</h5>
                             <p class="card-text">{{pedido.plato.valor}}</p>
-
                         </div>
                     </div>
                 </div>
@@ -82,9 +81,6 @@
             {% endif %}
         </div>
     </div>
-
-
-
 {% endblock %}
 </body>
 </html>
